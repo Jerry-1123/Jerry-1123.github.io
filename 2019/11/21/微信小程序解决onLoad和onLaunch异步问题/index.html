@@ -55,18 +55,18 @@
   };
 </script>
 
-  <meta name="description" content="千里之行，始于足下">
+  <meta name="description" content="问题描述 微信小程序中，app.js 中的 onLaunch 和 page 中的 onLoad 是异步执行的，不确定执行的先后顺序。假设，page 中的所有接口都需要带 openId 参数，一般都是小程序都是在 onLaunch 中获取 openId，之后在 onLoad 调用接口的时候传入 openId，因为 onLoad 和 onLaunch 是异步执行，则会出现在 onLoad 中使用的时候">
 <meta name="keywords" content="前端">
 <meta property="og:type" content="article">
 <meta property="og:title" content="微信小程序解决onLoad和onLaunch异步问题">
 <meta property="og:url" content="http://yoursite.com/2019/11/21/微信小程序解决onLoad和onLaunch异步问题/index.html">
 <meta property="og:site_name" content="夏同学">
-<meta property="og:description" content="千里之行，始于足下">
+<meta property="og:description" content="问题描述 微信小程序中，app.js 中的 onLaunch 和 page 中的 onLoad 是异步执行的，不确定执行的先后顺序。假设，page 中的所有接口都需要带 openId 参数，一般都是小程序都是在 onLaunch 中获取 openId，之后在 onLoad 调用接口的时候传入 openId，因为 onLoad 和 onLaunch 是异步执行，则会出现在 onLoad 中使用的时候">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-11-21T05:44:59.807Z">
+<meta property="og:updated_time" content="2019-11-21T07:54:29.048Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="微信小程序解决onLoad和onLaunch异步问题">
-<meta name="twitter:description" content="千里之行，始于足下">
+<meta name="twitter:description" content="问题描述 微信小程序中，app.js 中的 onLaunch 和 page 中的 onLoad 是异步执行的，不确定执行的先后顺序。假设，page 中的所有接口都需要带 openId 参数，一般都是小程序都是在 onLaunch 中获取 openId，之后在 onLoad 调用接口的时候传入 openId，因为 onLoad 和 onLaunch 是异步执行，则会出现在 onLoad 中使用的时候">
   <link rel="canonical" href="http://yoursite.com/2019/11/21/微信小程序解决onLoad和onLaunch异步问题/">
 
 
@@ -257,7 +257,7 @@
                 
               
 
-              <time title="创建时间：2019-11-21 13:44:22 / 修改时间：13:44:59" itemprop="dateCreated datePublished" datetime="2019-11-21T13:44:22+08:00">2019-11-21</time>
+              <time title="创建时间：2019-11-21 13:44:22 / 修改时间：15:54:29" itemprop="dateCreated datePublished" datetime="2019-11-21T13:44:22+08:00">2019-11-21</time>
             </span>
           
             
@@ -297,7 +297,20 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        
+        <h6 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h6><blockquote>
+<p><font size="3">微信小程序中，app.js 中的 onLaunch 和 page 中的 onLoad 是异步执行的，不确定执行的先后顺序。假设，page 中的所有接口都需要带 openId 参数，一般都是小程序都是在 onLaunch 中获取 openId，之后在 onLoad 调用接口的时候传入 openId，因为 onLoad 和 onLaunch 是异步执行，则会出现在 onLoad 中使用的时候获取不到 openId 的尴尬场面。</font></p>
+</blockquote>
+<a id="more"></a>
+
+<h6 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h6><blockquote>
+<p><font size="3">在 app.js 中定义一个全局方法，使用 Promise 来实现 onLaunch 执行完成之后，再在 onLoad 中执行</font></p>
+</blockquote>
+<h6 id="方法实现"><a href="#方法实现" class="headerlink" title="方法实现"></a>方法实现</h6><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * app.js</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">App(&#123;</span><br><span class="line">  onLaunch() &#123;&#125;,</span><br><span class="line">  <span class="comment">// 所有页面统一调用，只需调用一次OpenId和Config</span></span><br><span class="line">  hasLoad() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">this</span>.checkOpenId()</span><br><span class="line">        .then(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">          resolve();</span><br><span class="line">        &#125;)</span><br><span class="line">        .catch(<span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">          reject(err);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 检查openId</span></span><br><span class="line">  checkOpenId() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">const</span> openId = wx.getStorageSync(<span class="string">"openId"</span>);</span><br><span class="line">      <span class="keyword">if</span> (!openId) &#123;</span><br><span class="line">        wx.login(&#123;</span><br><span class="line">          success: <span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">            <span class="keyword">const</span> params = &#123;</span><br><span class="line">              appid: Config.appId,</span><br><span class="line">              code: res.code</span><br><span class="line">            &#125;;</span><br><span class="line">            <span class="comment">// 此处调用接口获取openId</span></span><br><span class="line">            XXXXXXXAction.then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">              wx.setStorageSync(<span class="string">"openId"</span>, res.openId);</span><br><span class="line">              <span class="keyword">this</span>.globalData.openId = res.openId;</span><br><span class="line">              resolve();</span><br><span class="line">            &#125;).catch(<span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">              reject(err);</span><br><span class="line">            &#125;);</span><br><span class="line">          &#125;,</span><br><span class="line">          fail: <span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">            reject(err);</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">this</span>.globalData.openId = openId;</span><br><span class="line">        resolve();</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;,</span><br><span class="line">  globalData: &#123;</span><br><span class="line">    openId: <span class="string">""</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Page</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">Page(&#123;</span><br><span class="line">  data: &#123;&#125;,</span><br><span class="line">  onLoad(opts) &#123;</span><br><span class="line">    <span class="keyword">const</span> app = getApp();</span><br><span class="line">    app.hasLoad().then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="comment">// 准备完成后，进行下一步操作</span></span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<!-- more -->
+
     </div>
 
     
@@ -379,6 +392,8 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-6"><a class="nav-link" href="#问题描述"><span class="nav-number">1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#解决方法"><span class="nav-number">2.</span> <span class="nav-text">解决方法</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#方法实现"><span class="nav-number">3.</span> <span class="nav-text">方法实现</span></a></li></ol></div>
+        
       </div>
       <!--/noindex-->
 

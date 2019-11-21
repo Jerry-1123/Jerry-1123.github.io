@@ -255,7 +255,7 @@
                 
               
 
-              <time title="创建时间：2019-11-21 13:44:22 / 修改时间：13:44:59" itemprop="dateCreated datePublished" datetime="2019-11-21T13:44:22+08:00">2019-11-21</time>
+              <time title="创建时间：2019-11-21 13:44:22 / 修改时间：15:54:29" itemprop="dateCreated datePublished" datetime="2019-11-21T13:44:22+08:00">2019-11-21</time>
             </span>
           
             
@@ -295,7 +295,18 @@
     <div class="post-body" itemprop="articleBody">
 
       
+          <h6 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h6><blockquote>
+<p><font size="3">微信小程序中，app.js 中的 onLaunch 和 page 中的 onLoad 是异步执行的，不确定执行的先后顺序。假设，page 中的所有接口都需要带 openId 参数，一般都是小程序都是在 onLaunch 中获取 openId，之后在 onLoad 调用接口的时候传入 openId，因为 onLoad 和 onLaunch 是异步执行，则会出现在 onLoad 中使用的时候获取不到 openId 的尴尬场面。</font></p>
+</blockquote>
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/11/21/微信小程序解决onLoad和onLaunch异步问题/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
