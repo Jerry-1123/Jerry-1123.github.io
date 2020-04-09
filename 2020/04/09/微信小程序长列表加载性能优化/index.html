@@ -55,17 +55,19 @@
   };
 </script>
 
-  <meta name="description" content="千里之行，始于足下">
-<meta property="og:type" content="website">
-<meta property="og:title" content="夏同学">
-<meta property="og:url" content="http://yoursite.com/archives/2019/11/index.html">
+  <meta name="description" content="问题描述 微信小程序中，解决滑动到底部加载长列表数据的性能优化问题。">
+<meta name="keywords" content="前端">
+<meta property="og:type" content="article">
+<meta property="og:title" content="微信小程序长列表加载性能优化">
+<meta property="og:url" content="http://yoursite.com/2020/04/09/微信小程序长列表加载性能优化/index.html">
 <meta property="og:site_name" content="夏同学">
-<meta property="og:description" content="千里之行，始于足下">
+<meta property="og:description" content="问题描述 微信小程序中，解决滑动到底部加载长列表数据的性能优化问题。">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-04-09T07:51:21.487Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="夏同学">
-<meta name="twitter:description" content="千里之行，始于足下">
-  <link rel="canonical" href="http://yoursite.com/archives/2019/11/">
+<meta name="twitter:title" content="微信小程序长列表加载性能优化">
+<meta name="twitter:description" content="问题描述 微信小程序中，解决滑动到底部加载长列表数据的性能优化问题。">
+  <link rel="canonical" href="http://yoursite.com/2020/04/09/微信小程序长列表加载性能优化/">
 
 
 <script id="page-configurations">
@@ -73,13 +75,13 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: false,
+    isPost: true,
     isPage: false,
-    isArchive: true
+    isArchive: false
   };
 </script>
 
-  <title>归档 | 夏同学</title>
+  <title>微信小程序长列表加载性能优化 | 夏同学</title>
   
 
 
@@ -218,113 +220,135 @@
         <div class="content-wrap">
             
 
-  
-    
-    
-  
-    
-    
-  
-    
-    
-  
-    
-    
-  
-  
-
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+      <article itemscope itemtype="http://schema.org/Article">
   
   
   
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        
-        
-        
+  <div class="post-block post">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/09/微信小程序长列表加载性能优化/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="夏同学">
+      <meta itemprop="description" content="千里之行，始于足下">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="夏同学">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">微信小程序长列表加载性能优化
+
           
-        
-        <span class="collection-header">嗯..! 目前共计 4 篇日志。 继续努力。</span>
-      </div>
-      
+        </h1>
 
-      
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
 
-  
-  
+              
+                
+              
 
-  
+              <time title="创建时间：2020-04-09 15:45:11 / 修改时间：15:51:21" itemprop="dateCreated datePublished" datetime="2020-04-09T15:45:11+08:00">2020-04-09</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/小程序/" itemprop="url" rel="index"><span itemprop="name">小程序</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="/2020/04/09/微信小程序长列表加载性能优化/" class="post-meta-item leancloud_visitors" data-flag-title="微信小程序长列表加载性能优化" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+        </div>
+      </header>
+
     
-    <div class="collection-year">
-      <h1 class="collection-header">2019</h1>
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h6 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h6><blockquote>
+<p><font size="3">微信小程序中，解决滑动到底部加载长列表数据的性能优化问题。</font></p>
+</blockquote>
+<a id="more"></a>
+
+<h6 id="方法实现"><a href="#方法实现" class="headerlink" title="方法实现"></a>方法实现</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">data: &#123;</span><br><span class="line">    listData: []</span><br><span class="line">&#125;,</span><br><span class="line">onReachBottom() &#123; //上拉加载</span><br><span class="line">    // 通过长度获取下一次渲染的索引</span><br><span class="line">    let index = this.data.listData.length</span><br><span class="line">    let newData = &#123;&#125; //新变更数据</span><br><span class="line">    Api.getNews().forEach((item) =&gt; &#123;</span><br><span class="line">        newData[&apos;listData[&apos; + (index++) + &apos;]&apos;] = item //赋值，索引递增</span><br><span class="line">    &#125;) </span><br><span class="line">    this.setData(newData) //增量数据，发送数据到视图层</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
     </div>
-  
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
+    
+    
+    
         
-          <a class="post-title-link" href="/2019/11/21/微信小程序统一收集上报formId/" itemprop="url">
-            <span itemprop="name">微信小程序统一收集上报formId</span>
-          </a>
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/前端/" rel="tag"># 前端</a>
+            
+          </div>
         
-      </h2>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-11-21T17:23:39+08:00"
-              content="2019-11-21">
-          11-21
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-  
-  
-
-  
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
         
-          <a class="post-title-link" href="/2019/11/21/微信小程序解决onLoad和onLaunch异步问题/" itemprop="url">
-            <span itemprop="name">微信小程序解决onLoad和onLaunch异步问题</span>
-          </a>
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2019/11/21/微信小程序统一收集上报formId/" rel="next" title="微信小程序统一收集上报formId">
+                  <i class="fa fa-chevron-left"></i> 微信小程序统一收集上报formId
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+            </div>
+          </div>
         
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-11-21T13:44:22+08:00"
-              content="2019-11-21">
-          11-21
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-
-    </div>
+      </footer>
+    
   </div>
   
   
   
+  </article>
 
-  
-
+  </div>
 
 
           </div>
@@ -343,6 +367,11 @@
 
   <aside class="sidebar">
     <div class="sidebar-inner">
+        
+        
+        
+        
+      
 
       <ul class="sidebar-nav motion-element">
         <li class="sidebar-nav-toc">
@@ -355,6 +384,8 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-6"><a class="nav-link" href="#问题描述"><span class="nav-number">1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#方法实现"><span class="nav-number">2.</span> <span class="nav-text">方法实现</span></a></li></ol></div>
+        
       </div>
       <!--/noindex-->
 
